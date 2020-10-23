@@ -11,7 +11,6 @@ public abstract class Machine extends Block implements Interactable {
 
     public Machine(float x, float y, int width, int height, Material material) {
 	super(x, y, width, height, material);
-	System.out.println(material);
 	if (material != Material.Conveyor && material != Material.ConveyorExtractor
 		&& material != Material.ConveyorInserter) {
 	    this.activeMaterial = Material.values()[material.getID() + 1];

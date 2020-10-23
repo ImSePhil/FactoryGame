@@ -28,5 +28,5 @@ public class Entity extends GameObject {
 	protected int getHeight() {
 		return height;
 	}
-
+	
 }
