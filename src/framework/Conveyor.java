@@ -56,10 +56,6 @@ public class Conveyor extends Machine {
 
     }
 
-    public enum Direction {
-	Right, Left, Down, Up;
-    }
-
     @Override
     public void keyPressed(KeyEvent e, int k) {
 	if (mouseOver) {
@@ -81,5 +77,9 @@ public class Conveyor extends Machine {
 	    }
 	}
     }
+
+	public enum Direction {
+	Right, Left, Down, Up;
+	}
 
 }
