@@ -19,7 +19,8 @@ public class PlayState extends State implements ActionListener {
 	private World world;
 	public static Player player;
 	public static boolean buildMode;
-	public static Builder builder;
+	public static boolean farmMode;
+	public static Interactor interactor = new Interactor();
 	public static WorldSaver saver;
 	private Timer timer;
 	public static List<Item> items = new ArrayList<Item>();
@@ -30,6 +31,7 @@ public class PlayState extends State implements ActionListener {
 	private long oldTime = System.nanoTime();
 	private long difference;
 	private long fps;
+	public static GUI gui;
 
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
@@ -37,6 +39,7 @@ public class PlayState extends State implements ActionListener {
 		player = new Player(64, 64, 64, 64, 3);
 		camera = new Camera(player);
 		saver = new WorldSaver(world);
+		gui = new GUI();
 		enemies.add(new Zombie(50, 50, 64, 64, 2));
 		timer = new Timer(1000, this);
 		timer.start();
@@ -48,12 +51,13 @@ public class PlayState extends State implements ActionListener {
 		world.update();
 		player.update();
 		enemies.forEach(Enemy::update);
-		if (builder != null)
-			builder.update();
+		interactor.update();
 		items.forEach(Item::update);
 		inventoryPane.update();
 		time.update();
 		updateFrames();
+		gui.update();
+		
 	}
 
 	private void updateFrames() {
@@ -70,25 +74,20 @@ public class PlayState extends State implements ActionListener {
 		enemies.forEach(e -> e.render(g));
 		g.setColor(Color.white);
 		g.drawString("Buildmode: " + buildMode, 10, 10);
-		if (builder != null)
-			builder.render(g);
+		interactor.render(g);
 		items.forEach(item -> item.render(g));
 		time.render(g);
 		g.drawString(fps + " ", 40, 100);
 		inventoryPane.render(g);
+		gui.render(g);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e, int k) {
 		player.keyPressed(e, k);
-		if (e.getKeyCode() == KeyEvent.VK_B) {
-			buildMode = !buildMode;
-			if (buildMode)
-				builder = new Builder();
-			else
-				builder = null;
-		}
 		Game.world.keyPressed(e, k);
+		gui.keyPressed(e,k);
+		interactor.keyPressed(e,k);
 	}
 
 	@Override
@@ -98,8 +97,7 @@ public class PlayState extends State implements ActionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (builder != null)
-			builder.mousePressed(e);
+		interactor.mousePressed(e);
 		inventoryPane.mousePressed(e);
 	}
 
@@ -124,9 +122,7 @@ public class PlayState extends State implements ActionListener {
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		if (builder != null) {
-			builder.mouseWheelMoved(e);
-		}
+		interactor.mouseWheelMoved(e);
 	}
 
 	public static boolean isSlotFree(int x, int y) {

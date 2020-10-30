@@ -1,0 +1,12 @@
+{
+	"__comment": "Designed by HanFox for PureBDcraft - http://bdcraft.net",
+    "variants": {
+		"": [
+			{ "model": "block/grass_path", "weight": 30 },
+			{ "model": "block/_bdc/grass_path_01", "weight": 15 },
+			{ "model": "block/_bdc/grass_path_02", "weight": 15 },
+			{ "model": "block/_bdc/grass_path_03", "weight": 25 },
+			{ "model": "block/_bdc/grass_path_04", "weight": 15 }
+		]
+    }
+}
