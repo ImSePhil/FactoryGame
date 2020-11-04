@@ -40,5 +40,4 @@ public class ItemButton extends Paintable{
 			}
 		}
 	}
-
 }
