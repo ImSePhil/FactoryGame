@@ -6,6 +6,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 
+import framework.inventory.DrawItem;
+import framework.inventory.Slot;
+
 public class Interactor {
 	boolean farmingMode = false;
 	boolean buildMode = false;
@@ -45,13 +48,24 @@ public class Interactor {
 						Game.height - 128);
 			}
 		}
+		PlayState.inventoryPane.reset();
 		if (showSeedInventory) {
 			drawSeedInventory();
 		}
 	}
 
 	private void drawSeedInventory() {
-		PlayState.inventoryPane.reset();
+		PlayState.inventoryPane.drawComponent(new Slot(Game.width / 2 - 32, Game.height / 2 - 32, 64, 64, Color.gray));
+		PlayState.inventoryPane
+				.drawComponent(new Slot(Game.width / 2 - 32 - 64, Game.height / 2 - 32, 64, 64, Color.gray));
+		PlayState.inventoryPane
+				.drawComponent(new Slot(Game.width / 2 - 32 + 64, Game.height / 2 - 32, 64, 64, Color.gray));
+		PlayState.inventoryPane.drawComponent(
+				new DrawItem(Game.width / 2 - 32, Game.height / 2 - 32, 64, 64, Color.gray, 1, ItemType.carrotSeeds));
+		PlayState.inventoryPane.drawComponent(new DrawItem(Game.width / 2 - 32 - 64, Game.height / 2 - 32, 64, 64,
+				Color.gray, 1, ItemType.wheatSeeds));
+		PlayState.inventoryPane.drawComponent(new DrawItem(Game.width / 2 - 32 + 64, Game.height / 2 - 32, 64, 64,
+				Color.gray, 1, ItemType.potatoSeeds));
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -78,7 +92,7 @@ public class Interactor {
 	public void keyPressed(KeyEvent e, int k) {
 		if (e.getKeyCode() == KeyEvent.VK_Q)
 			if (farmingMode) {
-				showSeedInventory = true;
+				showSeedInventory = !showSeedInventory;
 			}
 	}
 }

@@ -20,7 +20,6 @@ public class Game extends JFrame {
 	public static World world = worldLoader.getWorld();
 	public static Spritesheet toolSpriteSheet = new Spritesheet("\\src\\Assets\\ToolSpriteSheet.png",64);
 	public static Spritesheet plantSpriteSheet = new Spritesheet("\\src\\Assets\\PlantSpriteSheet.png", 122);
-	
 
 	public boolean generate;
 	private WorldGenerator generator;
