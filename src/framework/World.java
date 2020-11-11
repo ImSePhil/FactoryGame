@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 public class World {
 	public Chunk[][] chunks;
 	public int chunksX;
@@ -112,4 +114,14 @@ public class World {
 	public void keyPressed(KeyEvent e, int k) {
 		machines.forEach(machine -> machine.keyPressed(e, k));
 	}
+
+	public void plant(Plants selectedPlant, int x, int y) {
+		System.out.println(selectedPlant + " " + x + " " + y);
+		for(Farmland land: farmland) {
+			if(land.getX() == x*64 && land.getY() == y*64) {
+				land.setPlant(selectedPlant);
+			}
+		}
+	}
+	
 }

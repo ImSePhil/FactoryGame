@@ -23,6 +23,7 @@ public class ItemButton extends Paintable{
 	public void render(Graphics2D g) {
 		Point mouse = PlayState.mousePosition;
 		g.setColor(Color.blue);
+		g.drawImage(itemType.getHDSprite(),x,y,width,height,null);
 		if (mouse.x > x && mouse.x < x + width) {
 			if (mouse.y > y && mouse.y < y + height) {
 				mouseOver = true;

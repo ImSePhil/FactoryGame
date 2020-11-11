@@ -16,9 +16,9 @@ public class Game extends JFrame {
 	public static Spritesheet itemHDSpriteSheet = new Spritesheet("\\src\\Assets\\itemsHD.png", 128);
 	public static int width = 1200;
 	public static int height = 800;
-	private static WorldLoader worldLoader = new WorldLoader("\\src\\Assets\\world1234.txt");
+	private static WorldLoader worldLoader = new WorldLoader("\\src\\Assets\\world12.txt");
 	public static World world = worldLoader.getWorld();
-	public static Spritesheet toolSpriteSheet = new Spritesheet("\\src\\Assets\\ToolSpriteSheet.png",64);
+	public static Spritesheet toolSpriteSheet = new Spritesheet("\\src\\Assets\\ToolSpriteSheet.png", 64);
 	public static Spritesheet plantSpriteSheet = new Spritesheet("\\src\\Assets\\PlantSpriteSheet.png", 122);
 
 	public boolean generate;
@@ -29,7 +29,7 @@ public class Game extends JFrame {
 		if (generate) {
 			try {
 				generator = new WorldGenerator();
-				generator.generate(400, 400, "src\\Assets\\world.txt", 20, 20, 20);
+				generator.generate(400, 400, "src\\Assets\\world.txt", 50, 50, 50);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -45,15 +45,7 @@ public class Game extends JFrame {
 	public static void main(String[] args) {
 		new Game(false);
 	}
-	
-	public enum Plants{
-		plant_wheat(Plant.crop_wheat,ItemType.wheatSeeds,ItemType.Wheat),
-		plant_carrot(Plant.crop_carrot,ItemType.carrotSeeds,ItemType.Carrot),
-		plant_potato(Plant.crop_potato,ItemType.potatoSeeds,ItemType.Potato);
 
-		Plants(Plant cropWheat, ItemType wheatseeds, ItemType wheat) {
-			// TODO Auto-generated constructor stub
-		}
-	}
 	
+
 }

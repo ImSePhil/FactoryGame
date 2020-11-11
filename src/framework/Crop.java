@@ -17,7 +17,6 @@ public class Crop extends GameObject implements ActionListener {
 
 	public Crop(float x, float y, int width, int height, Plant crop) {
 		super(x, y, width, height);
-
 		Random r = new Random();
 		int time = r.nextInt(20000) - 10000;
 		timer = new Timer(40000 + time, this);
